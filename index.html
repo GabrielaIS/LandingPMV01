@@ -15,26 +15,16 @@
                 <i class="fas fa-clipboard-list text-emerald-600 text-3xl"></i>
                 <h1 class="text-2xl font-bold text-gray-800">Guía de Trámites</h1>
             </div>
-            <button onclick="scrollToRegister()" class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition transform hover:scale-105">
-                Probar Gratis
-            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="container mx-auto px-4 py-16">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                ¿Cansado de perderte en<br>
-                <span class="text-emerald-600">trámites universitarios?</span>
-            </h2>
-            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                Guías paso a paso para cada trámite de tu universidad.<br>
-                <strong>Encuentra trámites y ubicaciones del campus en menos tiempo.</strong>
-            </p>
-            
-            <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto mb-12">
+    <!-- Search Bar Section -->
+    <section class="container mx-auto px-4 py-8">
+        <div class="text-center mb-4">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">
+            Busca el trámite que necesitas
+            </h3>
+            <div class="max-w-2xl mx-auto mb-6">
                 <div class="relative">
                     <input 
                         type="text" 
@@ -50,40 +40,9 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="bg-white py-16">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center text-gray-800 mb-4">
-                ¿Por qué usar Guía de Trámites?
-            </h3>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-                Diseñado específicamente para estudiantes que quieren ahorrar tiempo y evitar confusiones
-            </p>
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition bg-gradient-to-br from-emerald-50 to-teal-50">
-                    <i class="fas fa-clock text-emerald-600 text-5xl mb-4"></i>
-                    <h4 class="text-xl font-bold text-gray-800 mb-2">Ahorra Tiempo</h4>
-                    <p class="text-gray-600">No más vueltas innecesarias. Sigue pasos claros y llega directo al punto.</p>
-                </div>
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition bg-gradient-to-br from-emerald-50 to-teal-50">
-                    <i class="fas fa-map-marked-alt text-emerald-600 text-5xl mb-4"></i>
-                    <h4 class="text-xl font-bold text-gray-800 mb-2">Ubicaciones Exactas</h4>
-                    <p class="text-gray-600">Sabe exactamente dónde ir: oficina, piso, horarios de atención.</p>
-                </div>
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition bg-gradient-to-br from-emerald-50 to-teal-50">
-                    <i class="fas fa-file-alt text-emerald-600 text-5xl mb-4"></i>
-                    <h4 class="text-xl font-bold text-gray-800 mb-2">Requisitos Claros</h4>
-                    <p class="text-gray-600">Lista completa de documentos necesarios para cada trámite.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Available Procedures Section -->
     <section id="proceduresSection" class="container mx-auto px-4 py-16">
-        <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">
-            Trámites Disponibles
-        </h3>
         <div id="proceduresContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div class="procedure-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition" data-procedure="matrícula" data-title="Matrícula">
                 <div class="flex items-start space-x-4">
@@ -163,9 +122,6 @@
                 </div>
             </div>
         </div>
-        <p class="text-center mt-8 text-gray-600">
-            <strong>+ 20 trámites más</strong> disponibles en la versión completa
-        </p>
 
         <!-- Modal para mostrar guías -->
         <div id="guideModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
@@ -374,29 +330,6 @@
                 <span>Escríbenos por WhatsApp</span>
             </a>
             
-        </div>
-    </section>
-
-    <!-- Social Media -->
-    <section class="bg-white py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6">
-                Síguenos para más tips y actualizaciones
-            </h3>
-            <div class="flex justify-center space-x-8 mb-8">
-                <a href="#" onclick="trackSocial('Instagram')" class="text-pink-600 hover:text-pink-700 transition transform hover:scale-110">
-                    <i class="fab fa-instagram text-6xl"></i>
-                    <p class="text-sm mt-2">@guiadetramites</p>
-                </a>
-                <a href="#" onclick="trackSocial('TikTok')" class="text-gray-800 hover:text-gray-900 transition transform hover:scale-110">
-                    <i class="fab fa-tiktok text-6xl"></i>
-                    <p class="text-sm mt-2">@guiadetramites</p>
-                </a>
-            </div>
-            <p class="text-gray-600">
-                <i class="fas fa-video mr-2"></i>
-                Videos semanales explicando trámites de forma simple
-            </p>
         </div>
     </section>
 
