@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Trámites | Tu tiempo vale oro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            animation: slideIn 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-blue-50 text-gray-800 min-h-screen">
+    <header class="text-center py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-5">
+            <h1 class="text-6xl font-bold mb-5 drop-shadow-lg">📋 Guía de Trámites</h1>
+            <p class="text-2xl mb-3 opacity-95 font-light">Tu tiempo vale oro. Encuentra en segundos guías claras y actualizadas.</p>
+            <div class="flex justify-center gap-6 mt-10 flex-wrap">
+                <div class="flex items-center gap-2 text-lg bg-white/20 px-6 py-3 rounded-full backdrop-blur font-semibold">⏳ Ahorra tiempo</div>
+                <div class="flex items-center gap-2 text-lg bg-white/20 px-6 py-3 rounded-full backdrop-blur font-semibold">🧠 Evita confusiones</div>
+                <div class="flex items-center gap-2 text-lg bg-white/20 px-6 py-3 rounded-full backdrop-blur font-semibold">📌 Info centralizada</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white rounded-3xl p-12 my-12 max-w-4xl mx-auto shadow-xl">
+        <h2 class="text-center text-blue-600 mb-10 text-4xl font-bold">¿Qué necesitas hoy?</h2>
+        
+        <div class="relative mb-10">
+            <input type="text" class="w-full px-6 py-4 text-lg border-2 border-blue-200 rounded-full outline-none transition-all focus:border-blue-600 focus:ring-4 focus:ring-blue-100" id="searchInput" placeholder="Busca tu trámite aquí...">
+            <span class="absolute right-6 top-1/2 -translate-y-1/2 text-2xl text-blue-600">🔍</span>
+        </div>
+
+        <div class="tramites-list space-y-4" id="tramitesList">
+                <div class="tramite-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-blue-200 hover:border-blue-500 hover:shadow-xl hover:-translate-y-2" data-tramite="titulo">
+                    <h3 class="text-blue-700 mb-2 text-2xl font-bold">🎓 Título Profesional</h3>
+                    <p class="text-gray-600 mb-4 text-lg">Pasos completos para obtener tu título universitario</p>
+                    <div class="flex gap-2">
+                        <span class="inline-block bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-bold">Premium S/ 2</span>
+                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">15 min</span>
+                    </div>
+                </div>
+
+                <div class="tramite-card bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-emerald-200 hover:border-emerald-500 hover:shadow-xl hover:-translate-y-2" data-tramite="becas">
+                    <h3 class="text-emerald-700 mb-2 text-2xl font-bold">💰 Becas y Financiamiento</h3>
+                    <p class="text-gray-600 mb-4 text-lg">Cómo postular a becas universitarias</p>
+                    <div class="flex gap-2">
+                        <span class="inline-block bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-bold">Premium S/ 2</span>
+                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">10 min</span>
+                    </div>
+                </div>
+
+                <div class="tramite-card bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-orange-200 hover:border-orange-500 hover:shadow-xl hover:-translate-y-2" data-tramite="matricula">
+                    <h3 class="text-orange-700 mb-2 text-2xl font-bold">📝 Pago de Matrículas</h3>
+                    <p class="text-gray-600 mb-4 text-lg">Proceso completo de matrícula universitaria</p>
+                    <div class="flex gap-2">
+                        <span class="inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">Gratis</span>
+                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">8 min</span>
+                    </div>
+                </div>
+
+                <div class="tramite-card bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-pink-200 hover:border-pink-500 hover:shadow-xl hover:-translate-y-2" data-tramite="solicitudes">
+                    <h3 class="text-pink-700 mb-2 text-2xl font-bold">📄 Solicitudes Universitarias</h3>
+                    <p class="text-gray-600 mb-4 text-lg">Cómo hacer solicitudes formales en tu universidad</p>
+                    <div class="flex gap-2">
+                        <span class="inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">Gratis</span>
+                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">5 min</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-5">
+        <footer class="text-center py-12 text-gray-700">
+            <p class="text-lg font-semibold">💡 ¿Necesitas ayuda con otro trámite? Contáctanos</p>
+            <p class="mt-3 text-sm opacity-75">© 2024 Guía de Trámites</p>
+        </footer>
+    </div>
+
+    <div class="modal fixed inset-0 hidden items-center justify-center bg-black/40 z-50 backdrop-blur-sm" id="modal">
+        <div class="modal-content bg-white p-12 rounded-3xl max-w-2xl max-h-80vh overflow-y-auto relative shadow-2xl">
+            <span class="close-btn absolute top-4 right-6 text-3xl cursor-pointer text-gray-400 hover:text-gray-600 transition-colors font-bold" id="closeBtn">×</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const tramitesData = {
+            titulo: {
+                title: "🎓 Obtener Título Profesional",
+                premium: true,
+                preview: [
+                    { title: "Paso 1", content: "Culminar todos los créditos del plan de estudios" },
+                    { title: "Paso 2", content: "Aprobar el trabajo de tesis o modalidad de titulación" },
+                    { title: "Paso 3", content: "Vista previa - Contenido completo disponible en versión premium" }
+                ],
+                fullSteps: [
+                    { title: "Paso 1", content: "Culminar todos los créditos del plan de estudios y obtener constancia de egresado" },
+                    { title: "Paso 2", content: "Aprobar el trabajo de tesis o modalidad de titulación elegida" },
+                    { title: "Paso 3", content: "Solicitar certificado de estudios en secretaría académica" },
+                    { title: "Paso 4", content: "Pagar los derechos de título en tesorería (aproximadamente S/ 300-500)" },
+                    { title: "Paso 5", content: "Presentar expediente completo con todos los documentos requeridos" },
+                    { title: "Paso 6", content: "Esperar la resolución de otorgamiento del grado (15-30 días)" },
+                    { title: "Paso 7", content: "Recoger tu título profesional en la oficina de grados y títulos" }
+                ]
+            },
+            becas: {
+                title: "💰 Becas y Financiamiento Estudiantil",
+                premium: true,
+                preview: [
+                    { title: "Paso 1", content: "Identifica las becas disponibles en PRONABEC" },
+                    { title: "Paso 2", content: "Revisa los requisitos específicos de cada beca" },
+                    { title: "Paso 3", content: "Vista previa - Guía completa disponible en versión premium" }
+                ],
+                fullSteps: [
+                    { title: "Paso 1", content: "Ingresa a www.pronabec.gob.pe y revisa las convocatorias vigentes" },
+                    { title: "Paso 2", content: "Revisa requisitos: promedio mínimo, situación socioeconómica, documentos" },
+                    { title: "Paso 3", content: "Prepara certificados de notas, DNI, recibos de servicios, declaración jurada" },
+                    { title: "Paso 4", content: "Registra tu postulación en la plataforma virtual antes de la fecha límite" },
+                    { title: "Paso 5", content: "Realiza la entrevista personal o evaluación socioeconómica si aplica" },
+                    { title: "Paso 6", content: "Consulta resultados en la fecha indicada en la convocatoria" },
+                    { title: "Paso 7", content: "Si quedas seleccionado, firma el contrato de beca y cumple las obligaciones" }
+                ]
+            },
+            matricula: {
+                title: "📝 Pago de Matrículas Universitarias",
+                premium: false,
+                steps: [
+                    { title: "Paso 1", content: "Verifica que no tengas deudas pendientes en tu universidad" },
+                    { title: "Paso 2", content: "Ingresa al sistema de matrícula de tu universidad en las fechas indicadas" },
+                    { title: "Paso 3", content: "Selecciona tus cursos según tu malla curricular y horarios" },
+                    { title: "Paso 4", content: "Genera tu recibo de pago y realiza el pago en banco o en línea" },
+                    { title: "Paso 5", content: "Confirma tu matrícula y verifica que aparezcan todos tus cursos registrados" }
+                ]
+            },
+            solicitudes: {
+                title: "📄 Solicitudes Universitarias",
+                premium: false,
+                steps: [
+                    { title: "Paso 1", content: "Identifica el tipo de solicitud: certificado, constancia, permiso, etc." },
+                    { title: "Paso 2", content: "Descarga el formato de solicitud desde la web de tu universidad" },
+                    { title: "Paso 3", content: "Llena el formulario con tus datos completos y especifica tu solicitud" },
+                    { title: "Paso 4", content: "Adjunta los documentos requeridos (DNI, recibo de pago si aplica)" },
+                    { title: "Paso 5", content: "Presenta la solicitud en mesa de partes o virtualmente según tu universidad" },
+                    { title: "Paso 6", content: "Recoge tu respuesta o documento en el plazo indicado (7-15 días)" }
+                ]
+            }
+        };
+
+        const searchInput = document.getElementById('searchInput');
+        const tramitesList = document.getElementById('tramitesList');
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modalBody');
+        const closeBtn = document.getElementById('closeBtn');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = tramitesList.querySelectorAll('.tramite-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+
+        tramitesList.addEventListener('click', (e) => {
+            const card = e.target.closest('.tramite-card');
+            if (card) {
+                const tramiteId = card.dataset.tramite;
+                const tramite = tramitesData[tramiteId];
+                showModal(tramite);
+            }
+        });
+
+        function showModal(tramite) {
+            const isPremium = tramite.premium;
+            const steps = isPremium ? tramite.preview : tramite.steps;
+            
+            let modalContent = `<h2 class="text-blue-600 mb-6 text-3xl font-bold">${tramite.title}</h2>`;
+            
+            if (isPremium) {
+                modalContent += `
+                    <div class="bg-yellow-50 p-5 rounded-xl mb-6 border-l-4 border-yellow-400">
+                        <strong class="text-yellow-800">⭐ Contenido Premium</strong><br>
+                        <span class="text-yellow-700">Esta es una vista previa. Accede a la guía completa por solo S/ 2</span>
+                    </div>
+                `;
+            }
+            
+            modalContent += '<div class="my-6">';
+            steps.forEach(step => {
+                modalContent += `
+                    <div class="bg-blue-50 p-5 mb-4 rounded-xl border-l-4 border-blue-600">
+                        <h4 class="text-blue-700 mb-2 font-bold text-lg">${step.title}</h4>
+                        <p class="text-gray-700">${step.content}</p>
+                    </div>
+                `;
+            });
+            modalContent += '</div>';
+            
+            if (isPremium) {
+                modalContent += `
+                    <button class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full font-bold cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 w-full mt-6 text-lg" onclick="handlePremiumPurchase('${tramite.title}')">
+                        🔓 Desbloquear Guía Completa - S/ 2
+                    </button>
+                `;
+            } else {
+                modalContent += `
+                    <button class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-bold cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 w-full mt-6 text-lg" onclick="handleFreeDownload('${tramite.title}')">
+                        📥 Guardar esta guía
+                    </button>
+                `;
+            }
+            
+            modalBody.innerHTML = modalContent;
+            modal.classList.remove('hidden');
+            modal.classList.add('active');
+        }
+
+        function handlePremiumPurchase(title) {
+            alert(`¡Gracias por tu interés!\n\nPara acceder a: "${title}"\n\nContáctanos por WhatsApp: [Tu número]\nO envía un correo a: tramites@ejemplo.com\n\nPago: S/ 2 vía Yape o transferencia.`);
+        }
+
+        function handleFreeDownload(title) {
+            alert(`✅ Guía guardada: "${title}"\n\n¿Te fue útil? Compártela con tus compañeros y síguenos para más guías.`);
+        }
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
