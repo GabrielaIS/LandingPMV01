@@ -591,9 +591,6 @@
             const guide = procedureGuides[procedureName];
             if (!guide) return;
 
-            metrics.guideDownloads++;
-            updateMetrics();
-
             const modal = document.getElementById('guideModal');
             const title = document.getElementById('guideTitleModal');
             const content = document.getElementById('guideContent');
