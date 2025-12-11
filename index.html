@@ -3,256 +3,689 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía de Trámites | Tu tiempo vale oro</title>
+    <title>Guía de Trámites - Tu asistente universitario</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            animation: slideIn 0.3s ease;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gradient-to-b from-slate-50 to-blue-50 text-gray-800 min-h-screen">
-    <header class="text-center py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg">
-        <div class="max-w-6xl mx-auto px-5">
-            <h1 class="text-6xl font-bold mb-5 drop-shadow-lg">📋 Guía de Trámites</h1>
-            <p class="text-2xl mb-3 opacity-95 font-light">Tu tiempo vale oro. Encuentra en segundos guías claras y actualizadas.</p>
-            <div class="flex justify-center gap-6 mt-10 flex-wrap">
-                <div class="flex items-center gap-2 text-lg bg-white/20 px-6 py-3 rounded-full backdrop-blur font-semibold">⏳ Ahorra tiempo</div>
-                <div class="flex items-center gap-2 text-lg bg-white/20 px-6 py-3 rounded-full backdrop-blur font-semibold">🧠 Evita confusiones</div>
-                <div class="flex items-center gap-2 text-lg bg-white/20 px-6 py-3 rounded-full backdrop-blur font-semibold">📌 Info centralizada</div>
+<body class="bg-gradient-to-br from-emerald-50 to-teal-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <i class="fas fa-clipboard-list text-emerald-600 text-3xl"></i>
+                <h1 class="text-2xl font-bold text-gray-800">Guía de Trámites</h1>
             </div>
+            <button onclick="scrollToRegister()" class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition transform hover:scale-105">
+                Probar Gratis
+            </button>
         </div>
     </header>
 
-    <div class="bg-white rounded-3xl p-12 my-12 max-w-4xl mx-auto shadow-xl">
-        <h2 class="text-center text-blue-600 mb-10 text-4xl font-bold">¿Qué necesitas hoy?</h2>
-        
-        <div class="relative mb-10">
-            <input type="text" class="w-full px-6 py-4 text-lg border-2 border-blue-200 rounded-full outline-none transition-all focus:border-blue-600 focus:ring-4 focus:ring-blue-100" id="searchInput" placeholder="Busca tu trámite aquí...">
-            <span class="absolute right-6 top-1/2 -translate-y-1/2 text-2xl text-blue-600">🔍</span>
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                ¿Cansado de perderte en<br>
+                <span class="text-emerald-600">trámites universitarios?</span>
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Guías paso a paso para cada trámite de tu universidad.<br>
+                <strong>Encuentra trámites y ubicaciones del campus en menos tiempo.</strong>
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="heroSearchInput"
+                        placeholder="Busca tu trámite (ej: matrícula, constancia, retiro...)" 
+                        class="w-full px-6 py-4 text-lg border-2 border-emerald-600 rounded-xl focus:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-200 transition"
+                        onkeyup="searchProcedures(this.value)"
+                    >
+                    <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-emerald-600 text-xl"></i>
+                </div>
+                <div id="searchResults" class="mt-6 max-w-2xl mx-auto"></div>
+            </div>
         </div>
+    </section>
 
-        <div class="tramites-list space-y-4" id="tramitesList">
-                <div class="tramite-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-blue-200 hover:border-blue-500 hover:shadow-xl hover:-translate-y-2" data-tramite="titulo">
-                    <h3 class="text-blue-700 mb-2 text-2xl font-bold">🎓 Título Profesional</h3>
-                    <p class="text-gray-600 mb-4 text-lg">Pasos completos para obtener tu título universitario</p>
-                    <div class="flex gap-2">
-                        <span class="inline-block bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-bold">Premium S/ 2</span>
-                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">15 min</span>
+    <!-- Benefits Section -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                ¿Por qué usar Guía de Trámites?
+            </h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Diseñado específicamente para estudiantes que quieren ahorrar tiempo y evitar confusiones
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition bg-gradient-to-br from-emerald-50 to-teal-50">
+                    <i class="fas fa-clock text-emerald-600 text-5xl mb-4"></i>
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">Ahorra Tiempo</h4>
+                    <p class="text-gray-600">No más vueltas innecesarias. Sigue pasos claros y llega directo al punto.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition bg-gradient-to-br from-emerald-50 to-teal-50">
+                    <i class="fas fa-map-marked-alt text-emerald-600 text-5xl mb-4"></i>
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">Ubicaciones Exactas</h4>
+                    <p class="text-gray-600">Sabe exactamente dónde ir: oficina, piso, horarios de atención.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition bg-gradient-to-br from-emerald-50 to-teal-50">
+                    <i class="fas fa-file-alt text-emerald-600 text-5xl mb-4"></i>
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">Requisitos Claros</h4>
+                    <p class="text-gray-600">Lista completa de documentos necesarios para cada trámite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Procedures Section -->
+    <section id="proceduresSection" class="container mx-auto px-4 py-16">
+        <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">
+            Trámites Disponibles
+        </h3>
+        <div id="proceduresContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div class="procedure-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition" data-procedure="matrícula" data-title="Matrícula">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-emerald-100 p-3 rounded-lg">
+                        <i class="fas fa-user-graduate text-emerald-600 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Matrícula</h4>
+                        <p class="text-sm text-gray-600 mb-3">Pasos para matricularte cada semestre</p>
+                        <button onclick="showGuide('Matrícula')" class="text-emerald-600 text-sm font-semibold hover:text-emerald-700">Ver guía →</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="tramite-card bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-emerald-200 hover:border-emerald-500 hover:shadow-xl hover:-translate-y-2" data-tramite="becas">
-                    <h3 class="text-emerald-700 mb-2 text-2xl font-bold">💰 Becas y Financiamiento</h3>
-                    <p class="text-gray-600 mb-4 text-lg">Cómo postular a becas universitarias</p>
-                    <div class="flex gap-2">
-                        <span class="inline-block bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-bold">Premium S/ 2</span>
-                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">10 min</span>
+            <div class="procedure-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition" data-procedure="constancia estudios" data-title="Constancia de Estudios">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-blue-100 p-3 rounded-lg">
+                        <i class="fas fa-certificate text-blue-600 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Constancia de Estudios</h4>
+                        <p class="text-sm text-gray-600 mb-3">Solicita tu constancia en minutos</p>
+                        <button onclick="showGuide('Constancia de Estudios')" class="text-blue-600 text-sm font-semibold hover:text-blue-700">Ver guía →</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="tramite-card bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-orange-200 hover:border-orange-500 hover:shadow-xl hover:-translate-y-2" data-tramite="matricula">
-                    <h3 class="text-orange-700 mb-2 text-2xl font-bold">📝 Pago de Matrículas</h3>
-                    <p class="text-gray-600 mb-4 text-lg">Proceso completo de matrícula universitaria</p>
-                    <div class="flex gap-2">
-                        <span class="inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">Gratis</span>
-                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">8 min</span>
+            <div class="procedure-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition" data-procedure="retiro ciclo" data-title="Retiro de Ciclo">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-red-100 p-3 rounded-lg">
+                        <i class="fas fa-door-open text-red-600 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Retiro de Ciclo</h4>
+                        <p class="text-sm text-gray-600 mb-3">Proceso completo para retiro temporal</p>
+                        <button onclick="showGuide('Retiro de Ciclo')" class="text-red-600 text-sm font-semibold hover:text-red-700">Ver guía →</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="tramite-card bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-2xl cursor-pointer transition-all border-2 border-pink-200 hover:border-pink-500 hover:shadow-xl hover:-translate-y-2" data-tramite="solicitudes">
-                    <h3 class="text-pink-700 mb-2 text-2xl font-bold">📄 Solicitudes Universitarias</h3>
-                    <p class="text-gray-600 mb-4 text-lg">Cómo hacer solicitudes formales en tu universidad</p>
-                    <div class="flex gap-2">
-                        <span class="inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">Gratis</span>
-                        <span class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold">5 min</span>
+            <div class="procedure-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition" data-procedure="reserva matrícula" data-title="Reserva de Matrícula">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-yellow-100 p-3 rounded-lg">
+                        <i class="fas fa-pause-circle text-yellow-600 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Reserva de Matrícula</h4>
+                        <p class="text-sm text-gray-600 mb-3">Cómo pausar tus estudios correctamente</p>
+                        <button onclick="showGuide('Reserva de Matrícula')" class="text-yellow-600 text-sm font-semibold hover:text-yellow-700">Ver guía →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="procedure-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition" data-procedure="convalidación cursos" data-title="Convalidación de Cursos">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-purple-100 p-3 rounded-lg">
+                        <i class="fas fa-exchange-alt text-purple-600 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Convalidación de Cursos</h4>
+                        <p class="text-sm text-gray-600 mb-3">Reconoce cursos de otras instituciones</p>
+                        <button onclick="showGuide('Convalidación de Cursos')" class="text-purple-600 text-sm font-semibold hover:text-purple-700">Ver guía →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="procedure-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition" data-procedure="carnet universitario" data-title="Carnet Universitario">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-indigo-100 p-3 rounded-lg">
+                        <i class="fas fa-id-card text-indigo-600 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-gray-800 mb-2">Carnet Universitario</h4>
+                        <p class="text-sm text-gray-600 mb-3">Obtén o renueva tu carnet</p>
+                        <button onclick="showGuide('Carnet Universitario')" class="text-indigo-600 text-sm font-semibold hover:text-indigo-700">Ver guía →</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <p class="text-center mt-8 text-gray-600">
+            <strong>+ 20 trámites más</strong> disponibles en la versión completa
+        </p>
 
-    <div class="max-w-6xl mx-auto px-5">
-        <footer class="text-center py-12 text-gray-700">
-            <p class="text-lg font-semibold">💡 ¿Necesitas ayuda con otro trámite? Contáctanos</p>
-            <p class="mt-3 text-sm opacity-75">© 2024 Guía de Trámites</p>
-        </footer>
-    </div>
-
-    <div class="modal fixed inset-0 hidden items-center justify-center bg-black/40 z-50 backdrop-blur-sm" id="modal">
-        <div class="modal-content bg-white p-12 rounded-3xl max-w-2xl max-h-80vh overflow-y-auto relative shadow-2xl">
-            <span class="close-btn absolute top-4 right-6 text-3xl cursor-pointer text-gray-400 hover:text-gray-600 transition-colors font-bold" id="closeBtn">×</span>
-            <div id="modalBody"></div>
+        <!-- Modal para mostrar guías -->
+        <div id="guideModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl max-w-2xl w-full max-h-screen overflow-y-auto shadow-2xl">
+                <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+                    <h2 id="guideTitleModal" class="text-2xl font-bold text-gray-800"></h2>
+                    <button onclick="closeGuideModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="guideContent" class="p-6">
+                    <!-- Contenido dinámico -->
+                </div>
+                <div class="p-6 bg-gray-50 border-t">
+                    <button onclick="scrollToRegister()" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-emerald-700 transition">
+                        Acceder a todas las guías
+                    </button>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="bg-gradient-to-br from-emerald-600 to-teal-700 py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center text-white mb-12">
+                Lo que dicen los estudiantes
+            </h3>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl p-6 shadow-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-emerald-200 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-emerald-700"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">María García</p>
+                            <p class="text-sm text-gray-600">Ingeniería Civil</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700">"Ya no pierdo tiempo buscando información. Todo está súper claro y paso a paso."</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-blue-700"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Carlos Mendoza</p>
+                            <p class="text-sm text-gray-600">Administración</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700">"Antes daba mil vueltas para una constancia. Ahora sé exactamente qué hacer y dónde ir."</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-purple-700"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Ana Torres</p>
+                            <p class="text-sm text-gray-600">Medicina</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700">"Perfecto para cachimbos. Me hubiera ahorrado tantos dolores de cabeza en primer año."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="register" class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                    Comienza tu prueba gratuita
+                </h3>
+                <p class="text-xl text-gray-600">
+                    <strong>7 días gratis</strong> con acceso completo a todas las guías
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-600 to-teal-600 p-8 text-white text-center">
+                    <h4 class="text-3xl font-bold mb-2">Plan Estudiante</h4>
+                    <p class="text-emerald-100 mb-4">Acceso completo a todas las guías</p>
+                    <div class="text-5xl font-bold mb-2">S/. 5<span class="text-2xl font-normal">/mes</span></div>
+                    <p class="text-emerald-100">Después del periodo de prueba</p>
+                </div>
+
+                <div class="p-8">
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-emerald-600 text-xl mr-3"></i>
+                            <span class="text-gray-700">Acceso ilimitado a +20 guías de trámites</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-emerald-600 text-xl mr-3"></i>
+                            <span class="text-gray-700">Actualizaciones constantes de procedimientos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-emerald-600 text-xl mr-3"></i>
+                            <span class="text-gray-700">Soporte personalizado por WhatsApp</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-emerald-600 text-xl mr-3"></i>
+                            <span class="text-gray-700">Recordatorios de fechas importantes</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-emerald-600 text-xl mr-3"></i>
+                            <span class="text-gray-700">Mapas y ubicaciones exactas</span>
+                        </li>
+                    </ul>
+
+                    <form id="registrationForm" class="space-y-4 mb-6">
+                        <input 
+                            type="text" 
+                            id="nameInput"
+                            placeholder="Tu nombre completo" 
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-emerald-600 focus:outline-none"
+                            required
+                        >
+                        <input 
+                            type="email" 
+                            id="emailInput"
+                            placeholder="tu-email@universidad.edu.pe" 
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-emerald-600 focus:outline-none"
+                            required
+                        >
+                        <input 
+                            type="tel" 
+                            id="phoneInput"
+                            placeholder="Teléfono (opcional)" 
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-emerald-600 focus:outline-none"
+                        >
+                        <button 
+                            type="submit"
+                            class="w-full bg-emerald-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-emerald-700 transition transform hover:scale-105 shadow-lg"
+                        >
+                            🎉 Comenzar Prueba Gratuita de 7 Días
+                        </button>
+                    </form>
+
+                    <p class="text-center text-sm text-gray-500 mb-6">
+                        No se requiere tarjeta de crédito · Cancela cuando quieras
+                    </p>
+
+                    <div class="border-t pt-6">
+                        <p class="text-center text-gray-700 font-semibold mb-4">
+                            Después del periodo de prueba, paga con:
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button onclick="simulatePayment('Yape')" class="flex-1 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition transform hover:scale-105 flex items-center justify-center space-x-2">
+                                <i class="fas fa-mobile-alt text-2xl"></i>
+                                <span>Pagar con Yape</span>
+                            </button>
+                            <button onclick="simulatePayment('PayPal')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 flex items-center justify-center space-x-2">
+                                <i class="fab fa-paypal text-2xl"></i>
+                                <span>Pagar con PayPal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Support -->
+    <section class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold text-gray-800 mb-6">
+                ¿Necesitas ayuda con algún trámite?
+            </h3>
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Nuestro equipo está listo para resolver tus dudas, enviarte guías personalizadas y recordatorios
+            </p>
+            <a 
+                href="https://wa.me/51999999999?text=Hola,%20necesito%20ayuda%20con%20un%20trámite" 
+                target="_blank"
+                onclick="trackWhatsApp()"
+                class="inline-flex items-center space-x-3 bg-green-500 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-green-600 transition transform hover:scale-105 shadow-xl"
+            >
+                <i class="fab fa-whatsapp text-3xl"></i>
+                <span>Escríbenos por WhatsApp</span>
+            </a>
+            <div class="mt-8 grid md:grid-cols-3 gap-4 max-w-3xl mx-auto text-left">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-600">💬 Pregunta común:</p>
+                    <p class="text-gray-800 font-semibold">"¿Qué documentos necesito para mi matrícula?"</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-600">💬 Pregunta común:</p>
+                    <p class="text-gray-800 font-semibold">"¿Dónde tramito mi constancia de estudios?"</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-600">💬 Pregunta común:</p>
+                    <p class="text-gray-800 font-semibold">"¿Cuál es el proceso para reserva de matrícula?"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                Síguenos para más tips y actualizaciones
+            </h3>
+            <div class="flex justify-center space-x-8 mb-8">
+                <a href="#" onclick="trackSocial('Instagram')" class="text-pink-600 hover:text-pink-700 transition transform hover:scale-110">
+                    <i class="fab fa-instagram text-6xl"></i>
+                    <p class="text-sm mt-2">@guiadetramites</p>
+                </a>
+                <a href="#" onclick="trackSocial('TikTok')" class="text-gray-800 hover:text-gray-900 transition transform hover:scale-110">
+                    <i class="fab fa-tiktok text-6xl"></i>
+                    <p class="text-sm mt-2">@guiadetramites</p>
+                </a>
+            </div>
+            <p class="text-gray-600">
+                <i class="fas fa-video mr-2"></i>
+                Videos semanales explicando trámites de forma simple
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-6">
+                <h4 class="text-2xl font-bold mb-2">Guía de Trámites</h4>
+                <p class="text-gray-400">Tu asistente universitario de confianza</p>
+            </div>
+            <div class="text-center text-sm text-gray-400">
+                <p class="mb-2">&copy; 2024 Guía de Trámites. Todos los derechos reservados.</p>
+                <p>Hecho con ❤️ para estudiantes que valoran su tiempo</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Metrics Tracker -->
+    <div id="metricsDisplay" class="fixed bottom-4 right-4 bg-gray-900 text-white p-4 rounded-lg shadow-2xl text-sm max-w-xs hidden">
+        <h5 class="font-bold mb-2">📊 Métricas del PMV</h5>
+        <div id="metricsContent"></div>
     </div>
 
     <script>
-        const tramitesData = {
-            titulo: {
-                title: "🎓 Obtener Título Profesional",
-                premium: true,
-                preview: [
-                    { title: "Paso 1", content: "Culminar todos los créditos del plan de estudios" },
-                    { title: "Paso 2", content: "Aprobar el trabajo de tesis o modalidad de titulación" },
-                    { title: "Paso 3", content: "Vista previa - Contenido completo disponible en versión premium" }
-                ],
-                fullSteps: [
-                    { title: "Paso 1", content: "Culminar todos los créditos del plan de estudios y obtener constancia de egresado" },
-                    { title: "Paso 2", content: "Aprobar el trabajo de tesis o modalidad de titulación elegida" },
-                    { title: "Paso 3", content: "Solicitar certificado de estudios en secretaría académica" },
-                    { title: "Paso 4", content: "Pagar los derechos de título en tesorería (aproximadamente S/ 300-500)" },
-                    { title: "Paso 5", content: "Presentar expediente completo con todos los documentos requeridos" },
-                    { title: "Paso 6", content: "Esperar la resolución de otorgamiento del grado (15-30 días)" },
-                    { title: "Paso 7", content: "Recoger tu título profesional en la oficina de grados y títulos" }
-                ]
-            },
-            becas: {
-                title: "💰 Becas y Financiamiento Estudiantil",
-                premium: true,
-                preview: [
-                    { title: "Paso 1", content: "Identifica las becas disponibles en PRONABEC" },
-                    { title: "Paso 2", content: "Revisa los requisitos específicos de cada beca" },
-                    { title: "Paso 3", content: "Vista previa - Guía completa disponible en versión premium" }
-                ],
-                fullSteps: [
-                    { title: "Paso 1", content: "Ingresa a www.pronabec.gob.pe y revisa las convocatorias vigentes" },
-                    { title: "Paso 2", content: "Revisa requisitos: promedio mínimo, situación socioeconómica, documentos" },
-                    { title: "Paso 3", content: "Prepara certificados de notas, DNI, recibos de servicios, declaración jurada" },
-                    { title: "Paso 4", content: "Registra tu postulación en la plataforma virtual antes de la fecha límite" },
-                    { title: "Paso 5", content: "Realiza la entrevista personal o evaluación socioeconómica si aplica" },
-                    { title: "Paso 6", content: "Consulta resultados en la fecha indicada en la convocatoria" },
-                    { title: "Paso 7", content: "Si quedas seleccionado, firma el contrato de beca y cumple las obligaciones" }
-                ]
-            },
-            matricula: {
-                title: "📝 Pago de Matrículas Universitarias",
-                premium: false,
+        // Metrics tracking
+        let metrics = {
+            emailsCaptured: 0,
+            paymentClicks: 0,
+            videoPlays: 0,
+            whatsappClicks: 0,
+            guideDownloads: 0,
+            procedureViews: 0,
+            socialClicks: 0
+        };
+
+        function updateMetrics() {
+            const display = document.getElementById('metricsDisplay');
+            const content = document.getElementById('metricsContent');
+            content.innerHTML = `
+                <p>✉️ Emails: ${metrics.emailsCaptured}</p>
+                <p>💳 Clics en pago: ${metrics.paymentClicks}</p>
+                <p>▶️ Reproducciones video: ${metrics.videoPlays}</p>
+                <p>💬 WhatsApp: ${metrics.whatsappClicks}</p>
+                <p>📥 Descargas guía: ${metrics.guideDownloads}</p>
+                <p>📋 Vistas trámites: ${metrics.procedureViews}</p>
+                <p>📱 Redes sociales: ${metrics.socialClicks}</p>
+            `;
+            display.classList.remove('hidden');
+        }
+
+        // Registration form
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            
+            metrics.emailsCaptured++;
+            updateMetrics();
+            
+            alert(`🎉 ¡Bienvenido/a, ${name}!\n\n✅ Registro exitoso\n📧 Email: ${email}\n\n🎁 Tienes 7 días de acceso GRATIS a todas las guías.\n\nTe enviaremos un correo con tus credenciales de acceso.\n\n📊 Métrica: +1 email capturado`);
+            console.log('Registro:', { name, email, phone });
+        });
+
+        function playVideo() {
+            metrics.videoPlays++;
+            updateMetrics();
+            alert('▶️ Reproduciendo video explicativo...\n\n1️⃣ Busca tu trámite\n2️⃣ Sigue los pasos\n3️⃣ ¡Complétalo sin problemas!\n\n📊 Métrica: +1 reproducción de video');
+            console.log('Video reproducido');
+        }
+
+        // Datos de guías de trámites
+        const procedureGuides = {
+            'Matrícula': {
                 steps: [
-                    { title: "Paso 1", content: "Verifica que no tengas deudas pendientes en tu universidad" },
-                    { title: "Paso 2", content: "Ingresa al sistema de matrícula de tu universidad en las fechas indicadas" },
-                    { title: "Paso 3", content: "Selecciona tus cursos según tu malla curricular y horarios" },
-                    { title: "Paso 4", content: "Genera tu recibo de pago y realiza el pago en banco o en línea" },
-                    { title: "Paso 5", content: "Confirma tu matrícula y verifica que aparezcan todos tus cursos registrados" }
-                ]
+                    { step: 1, title: 'Acceder al portal', description: 'Ingresa a tu cuenta en el portal de estudiantes con tu usuario y contraseña' },
+                    { step: 2, title: 'Seleccionar cursos', description: 'Busca los cursos disponibles para tu semestre. Verifica horarios y requisitos previos' },
+                    { step: 3, title: 'Confirmar matrícula', description: 'Revisa tu selección y haz clic en "Confirmar matrícula". Se generará tu comprobante' },
+                    { step: 4, title: 'Realizar pago', description: 'Dirígete a tesorería (Edificio Principal, 3er piso) para pagar según créditos seleccionados' },
+                    { step: 5, title: 'Finalizar', description: 'Guarda tu comprobante de pago. Tu matrícula estará activa en 48 horas' }
+                ],
+                requirements: ['Cédula o DNI', 'Comprobante de pago anterior (si aplica)', 'Acceso al portal'],
+                location: 'Edificio Principal, 2do piso - Oficina de Registro'
             },
-            solicitudes: {
-                title: "📄 Solicitudes Universitarias",
-                premium: false,
+            'Constancia de Estudios': {
                 steps: [
-                    { title: "Paso 1", content: "Identifica el tipo de solicitud: certificado, constancia, permiso, etc." },
-                    { title: "Paso 2", content: "Descarga el formato de solicitud desde la web de tu universidad" },
-                    { title: "Paso 3", content: "Llena el formulario con tus datos completos y especifica tu solicitud" },
-                    { title: "Paso 4", content: "Adjunta los documentos requeridos (DNI, recibo de pago si aplica)" },
-                    { title: "Paso 5", content: "Presenta la solicitud en mesa de partes o virtualmente según tu universidad" },
-                    { title: "Paso 6", content: "Recoge tu respuesta o documento en el plazo indicado (7-15 días)" }
-                ]
+                    { step: 1, title: 'Acceder al portal', description: 'Inicia sesión en el portal de estudiantes' },
+                    { step: 2, title: 'Solicitar constancia', description: 'Ve a la sección "Documentos" y selecciona "Constancia de Estudios"' },
+                    { step: 3, title: 'Elegir formato', description: 'Selecciona si quieres constancia simple o con calificaciones' },
+                    { step: 4, title: 'Confirmar solicitud', description: 'Revisa los datos y confirma. La solicitud se procesará en 24 horas' },
+                    { step: 5, title: 'Retirar documento', description: 'Retira tu constancia en la Oficina de Registro o solicita que la envíen por email' }
+                ],
+                requirements: ['Estar matriculado', 'No tener deuda universitaria'],
+                location: 'Edificio Principal, 2do piso - Oficina de Registro'
+            },
+            'Retiro de Ciclo': {
+                steps: [
+                    { step: 1, title: 'Consultar asesor', description: 'Habla con tu asesor académico antes de solicitar el retiro' },
+                    { step: 2, title: 'Obtener formulario', description: 'Obtén el formulario de retiro en la Oficina de Registro' },
+                    { step: 3, title: 'Justificar motivo', description: 'Incluye una justificación escrita del motivo de tu retiro' },
+                    { step: 4, title: 'Presentar documentos', description: 'Entrega el formulario con documentos de respaldo a Registro' },
+                    { step: 5, title: 'Confirmación', description: 'Recibirás confirmación por email. Tu retiro se hará efectivo en 5 días hábiles' }
+                ],
+                requirements: ['Formulario de retiro', 'Documentación de respaldo', 'Cédula de identidad'],
+                location: 'Edificio Principal, 2do piso - Oficina de Registro'
+            },
+            'Reserva de Matrícula': {
+                steps: [
+                    { step: 1, title: 'Acceder al portal', description: 'Inicia sesión en el portal de estudiantes' },
+                    { step: 2, title: 'Solicitar reserva', description: 'Ve a "Mi Matrícula" y selecciona "Solicitar Reserva de Matrícula"' },
+                    { step: 3, title: 'Indicar periodo', description: 'Especifica el semestre o año en el que harás reserva' },
+                    { step: 4, title: 'Justificar motivo', description: 'Proporciona una justificación válida (becario, limitación económica, etc)' },
+                    { step: 5, title: 'Confirmar solicitud', description: 'Envía la solicitud. Será aprobada en máximo 10 días hábiles' }
+                ],
+                requirements: ['Estar matriculado anteriormente', 'Justificación válida'],
+                location: 'En línea - Portal de estudiantes'
+            },
+            'Convalidación de Cursos': {
+                steps: [
+                    { step: 1, title: 'Reunir documentación', description: 'Obtén tu récord académico de la institución anterior' },
+                    { step: 2, title: 'Completar formulario', description: 'Llena el formulario de convalidación disponible en Registro' },
+                    { step: 3, title: 'Anexar documentos', description: 'Adjunta: récord académico y sílabos del curso anterior' },
+                    { step: 4, title: 'Presentar solicitud', description: 'Entrega en la Oficina de Registro con los documentos originales' },
+                    { step: 5, title: 'Revisión', description: 'Un comité académico evaluará tu solicitud en 15 días hábiles' }
+                ],
+                requirements: ['Récord académico original', 'Sílabos de cursos', 'Cédula de identidad', 'Formulario de convalidación'],
+                location: 'Edificio Principal, 2do piso - Oficina de Registro'
+            },
+            'Carnet Universitario': {
+                steps: [
+                    { step: 1, title: 'Verificar matriculación', description: 'Asegúrate de estar matriculado en el semestre actual' },
+                    { step: 2, title: 'Ir a Bienestar', description: 'Dirígete a la Oficina de Bienestar Estudiantil' },
+                    { step: 3, title: 'Llenar solicitud', description: 'Completa el formulario de solicitud de carnet' },
+                    { step: 4, title: 'Tomar foto', description: 'Se tomará una foto digital para tu carnet' },
+                    { step: 5, title: 'Retirar carnet', description: 'Tu carnet estará listo en 5 días hábiles. Retíralo en Bienestar' }
+                ],
+                requirements: ['Cédula de identidad', 'Comprobante de matrícula', 'Foto digital (según especificaciones)'],
+                location: 'Edificio de Bienestar - 1er piso'
             }
         };
 
-        const searchInput = document.getElementById('searchInput');
-        const tramitesList = document.getElementById('tramitesList');
-        const modal = document.getElementById('modal');
-        const modalBody = document.getElementById('modalBody');
-        const closeBtn = document.getElementById('closeBtn');
-
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const cards = tramitesList.querySelectorAll('.tramite-card');
+        // Función de búsqueda en el hero
+        function searchProcedures(searchTerm) {
+            const resultsContainer = document.getElementById('searchResults');
             
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                card.style.display = text.includes(searchTerm) ? 'block' : 'none';
-            });
-        });
-
-        tramitesList.addEventListener('click', (e) => {
-            const card = e.target.closest('.tramite-card');
-            if (card) {
-                const tramiteId = card.dataset.tramite;
-                const tramite = tramitesData[tramiteId];
-                showModal(tramite);
+            if (!searchTerm.trim()) {
+                resultsContainer.innerHTML = '';
+                return;
             }
-        });
 
-        function showModal(tramite) {
-            const isPremium = tramite.premium;
-            const steps = isPremium ? tramite.preview : tramite.steps;
-            
-            let modalContent = `<h2 class="text-blue-600 mb-6 text-3xl font-bold">${tramite.title}</h2>`;
-            
-            if (isPremium) {
-                modalContent += `
-                    <div class="bg-yellow-50 p-5 rounded-xl mb-6 border-l-4 border-yellow-400">
-                        <strong class="text-yellow-800">⭐ Contenido Premium</strong><br>
-                        <span class="text-yellow-700">Esta es una vista previa. Accede a la guía completa por solo S/ 2</span>
-                    </div>
-                `;
+            const searchLower = searchTerm.toLowerCase();
+            const procedures = [
+                { name: 'Matrícula', key: 'Matrícula' },
+                { name: 'Constancia de Estudios', key: 'Constancia de Estudios' },
+                { name: 'Retiro de Ciclo', key: 'Retiro de Ciclo' },
+                { name: 'Reserva de Matrícula', key: 'Reserva de Matrícula' },
+                { name: 'Convalidación de Cursos', key: 'Convalidación de Cursos' },
+                { name: 'Carnet Universitario', key: 'Carnet Universitario' }
+            ];
+
+            const results = procedures.filter(p => 
+                p.name.toLowerCase().includes(searchLower) || 
+                p.key.toLowerCase().includes(searchLower)
+            );
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="bg-red-50 border-l-4 border-red-500 p-4 rounded text-red-700"><i class="fas fa-exclamation-circle mr-2"></i>No se encontró el trámite buscado</div>';
+                return;
             }
-            
-            modalContent += '<div class="my-6">';
-            steps.forEach(step => {
-                modalContent += `
-                    <div class="bg-blue-50 p-5 mb-4 rounded-xl border-l-4 border-blue-600">
-                        <h4 class="text-blue-700 mb-2 font-bold text-lg">${step.title}</h4>
-                        <p class="text-gray-700">${step.content}</p>
-                    </div>
-                `;
-            });
-            modalContent += '</div>';
-            
-            if (isPremium) {
-                modalContent += `
-                    <button class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full font-bold cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 w-full mt-6 text-lg" onclick="handlePremiumPurchase('${tramite.title}')">
-                        🔓 Desbloquear Guía Completa - S/ 2
+
+            let html = '<div class="space-y-2">';
+            results.forEach(result => {
+                html += `
+                    <button onclick="goToProcedure('${result.key}')" class="w-full text-left bg-white border-2 border-emerald-600 hover:bg-emerald-50 p-3 rounded-lg transition flex items-center justify-between">
+                        <span class="font-semibold text-gray-800">${result.name}</span>
+                        <i class="fas fa-arrow-right text-emerald-600"></i>
                     </button>
                 `;
-            } else {
-                modalContent += `
-                    <button class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-bold cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 w-full mt-6 text-lg" onclick="handleFreeDownload('${tramite.title}')">
-                        📥 Guardar esta guía
-                    </button>
-                `;
+            });
+            html += '</div>';
+            resultsContainer.innerHTML = html;
+        }
+
+        // Ir a un procedimiento específico
+        function goToProcedure(procedureName) {
+            const proceduresSection = document.getElementById('proceduresSection');
+            if (proceduresSection) {
+                proceduresSection.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('heroSearchInput').value = '';
+                document.getElementById('searchResults').innerHTML = '';
             }
+        }
+
+        // Mostrar guía en modal
+        function showGuide(procedureName) {
+            const guide = procedureGuides[procedureName];
+            if (!guide) return;
+
+            metrics.guideDownloads++;
+            updateMetrics();
+
+            const modal = document.getElementById('guideModal');
+            const title = document.getElementById('guideTitleModal');
+            const content = document.getElementById('guideContent');
+
+            title.textContent = procedureName;
+
+            let html = '<div class="space-y-4">';
             
-            modalBody.innerHTML = modalContent;
+            // Pasos
+            html += '<div><h3 class="text-lg font-bold text-gray-800 mb-3">📋 Pasos a Seguir:</h3>';
+            guide.steps.forEach(step => {
+                html += `
+                    <div class="flex gap-4 pb-3 border-b border-gray-200">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-8 w-8 rounded-full bg-emerald-600 text-white font-bold">
+                                ${step.step}
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-800">${step.title}</h4>
+                            <p class="text-sm text-gray-600 mt-1">${step.description}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            // Requisitos
+            html += '<div><h3 class="text-lg font-bold text-gray-800 mt-6 mb-3">📝 Requisitos:</h3><ul class="list-disc list-inside space-y-2 text-gray-700">';
+            guide.requirements.forEach(req => {
+                html += `<li>${req}</li>`;
+            });
+            html += '</ul></div>';
+
+            // Ubicación
+            html += `<div class="mt-6 p-4 bg-emerald-50 border-l-4 border-emerald-600 rounded">
+                <h3 class="font-bold text-emerald-900 mb-2">📍 Ubicación:</h3>
+                <p class="text-emerald-800">${guide.location}</p>
+            </div>`;
+
+            html += '</div>';
+            content.innerHTML = html;
             modal.classList.remove('hidden');
-            modal.classList.add('active');
         }
 
-        function handlePremiumPurchase(title) {
-            alert(`¡Gracias por tu interés!\n\nPara acceder a: "${title}"\n\nContáctanos por WhatsApp: [Tu número]\nO envía un correo a: tramites@ejemplo.com\n\nPago: S/ 2 vía Yape o transferencia.`);
+        function closeGuideModal() {
+            document.getElementById('guideModal').classList.add('hidden');
         }
 
-        function handleFreeDownload(title) {
-            alert(`✅ Guía guardada: "${title}"\n\n¿Te fue útil? Compártela con tus compañeros y síguenos para más guías.`);
-        }
-
-        closeBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-            modal.classList.remove('active');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+        function scrollToRegister() {
+            // Cerrar el modal si está abierto
+            const modal = document.getElementById('guideModal');
+            if (modal && !modal.classList.contains('hidden')) {
                 modal.classList.add('hidden');
-                modal.classList.remove('active');
             }
-        });
+            // Navegar a la sección de registro
+            document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function trackWhatsApp() {
+            metrics.whatsappClicks++;
+            updateMetrics();
+        }
+
+        function trackSocial(platform) {
+            metrics.socialClicks++;
+            updateMetrics();
+            console.log('Red social:', platform);
+        }
+
+        function simulatePayment(method) {
+            metrics.paymentClicks++;
+            updateMetrics();
+            alert(`💳 Procesando pago con ${method}...`);
+        }
     </script>
 </body>
 </html>
